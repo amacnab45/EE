@@ -12,3 +12,6 @@ print(population)
 
 print ('The value for the population variable is:', population)
 
+var cities = ['San Franciso', 'Los Angeles' , 'New  York', 'Atlanta'];
+print (cities);
+
