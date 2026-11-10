@@ -1,4 +1,5 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
-var image = ee.Image("ACA/reef_habitat/v2_0");
+var image = ee.Image("ACA/reef_habitat/v2_0"),
+    image2 = ee.Image("ACA/reef_habitat/v2_0");
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
-Map.addLayer()
+var dataset, ee.Image(ee.Image("ACA/reef_habitat/v2_0");)
