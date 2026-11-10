@@ -1,6 +1,7 @@
 /**** Start of imports. If edited, may not auto-convert in the playground. ****/
 var image = ee.Image("CGIAR/SRTM90_V4"),
-    image2 = ee.Image("CGIAR/SRTM90_V4");
+    image2 = ee.Image("CGIAR/SRTM90_V4"),
+    table = ee.FeatureCollection("WCMC/WDPA/current/polygons");
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Use two forward slashes for writing comments
 /* You can also use slashes and stars to write multi comment lines if you like */
@@ -80,8 +81,16 @@ var elevationVis = {
   palette: ['0000ff', '00ffff', 'ffff00', 'ff0000', 'ffffff']
 };
 
-Map.addLayer(dataset, elevationVis, 'Elevation')
+Map.addLayer(dataset, elevationVis, 'Elevation', true, 0.6)
 
 
+
+// Feature collection is a bag of features 
+var protected_areas = ee.FeatureCollection("WCMC/WDPA/current/polygons")
+
+Map.addLayer(protected_areas)
+
+// Use colour for features while palette for visparams
+Map.addLayer(protected_areas, {colour : ' green'}, 'Protected Areas')
 
 
