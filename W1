@@ -2,5 +2,13 @@
 /* You can also use slashes and stars to write multi comment lines if you like */
 
 print('Hello, World!')
+var the_answer = 42; // number
+var city = 'San Franciso' ;
+print(city)
 
+var population = 873965;
+print(population)
+//use print on everything to track results
+
+print ('The value for the population variable is:', population)
 
