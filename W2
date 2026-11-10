@@ -10,5 +10,6 @@ Map.addLayer(protected_areas)
 
 Map.setOptions('Satellite')
 
-Map.addLayer(srtm, {min :})
+Map.addLayer(srtm, {min : 0, max : 2500, palette : ['black', 'blue', 'orange', 'yellow']}),
+Map.addLayer(protected_areas, {colour : 'yellow'}, 'Protected Areas');
 
