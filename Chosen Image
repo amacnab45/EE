@@ -16,3 +16,15 @@ var countries = ee.FeatureCollection("FAO/GAUL/2015/level0")
 var fijiFeature = ee.Feature(
   countries.filter(ee.Filter.eq("ADMO_NAME", "Fiji")).first()
   );
+  
+Map.addLayer(dataset, {min : 0, max : 2500}, 'custom')
+
+
+
+
+
+
+
+
+
+  
