@@ -1,3 +1,7 @@
+/**** Start of imports. If edited, may not auto-convert in the playground. ****/
+var image = ee.Image("CGIAR/SRTM90_V4"),
+    image2 = ee.Image("CGIAR/SRTM90_V4");
+/***** End of imports. If edited, may not auto-convert in the playground. *****/
 // Use two forward slashes for writing comments
 /* You can also use slashes and stars to write multi comment lines if you like */
 
@@ -8,6 +12,8 @@ print(city)
 
 var population = 873965;
 print(population)
+
+
 //use print on everything to track results
 
 print ('The value for the population variable is:', population)
@@ -42,12 +48,28 @@ print(a + b)// plus is still in javascript
 var result = ee.Number(a).add(b); //Earth engine
 print (result, 'Earth Engine way')
 
-var result = a.add(b) // object first then function
+// object first then function
+print(result)
+
+var yearList = ee.List.sequence(1980,2020,5);
+print (yearList)
+
+Map.setOptions('Satellite');
+
+Map.setCenter(174.0638, -39.28,11)
 
 
+//Viz the image
+var dataset = ee.Image("CGIAR/SRTM90_V4")
 
+Map.addLayer (dataset)
 
+print (dataset)
 
- 
+Map.addLayer(dataset, {min : 0, max : 2500}, 'custom visualization')
+
+// Display of chosen colours onto the lays (Min and max indicate pixel size cover)
+ Map.addLayer(image, {min : 0, max : 2500, palette : ['blue', 'green', 
+ 'red']}, 'custom palette');
 
 
