@@ -93,4 +93,4 @@ Map.addLayer(protected_areas)
 // Use colour for features while palette for visparams
 Map.addLayer(protected_areas, {colour : ' green'}, 'Protected Areas')
 
-
+// {} indicate an object 
