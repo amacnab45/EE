@@ -15,3 +15,23 @@ print ('The value for the population variable is:', population)
 var cities = ['San Franciso', 'Los Angeles' , 'New  York', 'Atlanta'];
 print (cities);
 
+var cityData = { 
+ 'city' : ' San Franciso',
+ 'coordinates' : [-122.4194, 37.7749],
+ 'population' : 873965
+}
+print(cityData)
+
+// Functions act as a way to reuse code and make it easier to read
+
+var my_hello_function = function(string) {
+  return 'Hello' + string + '!' ;
+};
+print (my_hello_function('world'));
+
+var greet = function(name) {
+  return 'Hello' + name; 
+};
+print(greet('World'));
+print(('L Reader'))
+
