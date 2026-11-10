@@ -13,6 +13,21 @@ Map.setOptions('Satellite')
 
 
 
-Map.addLayer(srtm, {min : 0, max : 2500, palette : ['black', 'blue', 'orange', 'yellow']}),
+Map.addLayer(protected_areas, {min : 0, max : 2500, palette : ['black', 'blue', 'orange', 'yellow']}),
 Map.addLayer(protected_areas, {colour : 'yellow'}, 'Protected Areas');
+
+
+// How many PAS on Earth
+var no_pas = protected_areas.size();
+print('Number of PAs:', no_pas);
+
+var first_pa = protected_areas.sort('Status_YR', false).first()
+print('First PA:', first_pa)
+
+// First feature of the collection of protected areas
+print(protected_areas)
+print(protected_areas.first());
+
+
+
 
