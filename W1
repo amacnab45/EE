@@ -80,6 +80,8 @@ var elevationVis = {
   palette: ['0000ff', '00ffff', 'ffff00', 'ff0000', 'ffffff']
 };
 
+Map.addLayer(dataset, elevationVis, 'Elevation')
+
 
 
 
