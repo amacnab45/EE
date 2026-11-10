@@ -73,3 +73,13 @@ Map.addLayer(dataset, {min : 0, max : 2500}, 'custom visualization')
  'red']}, 'custom palette');
 
 
+// Visualisation of parameters
+var elevationVis = {
+  min: 0,
+  max: 2500,
+  palette: ['0000ff', '00ffff', 'ffff00', 'ff0000', 'ffffff']
+};
+
+
+
+
