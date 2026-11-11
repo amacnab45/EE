@@ -1,7 +1,7 @@
 var srtm = ee.Image("CGIAR/SRTM90_V4");
 Map.setCenter(174.0638, -39.298,11)
 Map.setOptions('Satellite');
-//Map.addLayer(srtm, {palette : ['black', 'orange', 'yellow'], min : 0, max : 2500}, 'srtm');
+Map.addLayer(srtm, {palette : ['black', 'orange', 'yellow'], min : 0, max : 2500}, 'srtm');
 
 //var elevationVis = {
  // min: 0,
@@ -25,19 +25,33 @@ Map.setOptions('Satellite');
 //print(snow_line)
 
 //Calculate slope
-var slope = ee.Terrain.slope(srtm)
+//var slope = ee.Terrain.slope(srtm)
 
-Map.addLayer(slope, {palette: ['black', 'white'], min: 0, max: 45}, 'slope');
-var protected_areas = ee.FeatureCollection("WCMC/WDPA/current/polygons");
+//Map.addLayer(slope, {palette: ['black', 'white'], min: 0, max: 45}, 'slope');
+//var protected_areas = ee.FeatureCollection("WCMC/WDPA/current/polygons");
 // Find Taranki  NP
-var taranaki = protected_areas.filter(ee.Filter.eq('Name','Egmont National Park'));
-Map.addLayer(taranaki, {color : 'orange'}, 'Mt Taranaki')
+//var taranaki = protected_areas.filter(ee.Filter.eq('NAME','Egmont National Park'));
+//Map.addLayer(taranaki, {color : 'orange'}, 'Mt Taranaki')
 
 
-var slopeOutput = slope.reduceRegion({
-  reducer : ee.Reducer.mean(), 
-  geometry : taranaki,
-  scale : 90
-})
+//var mean_slope = slope.reduceRegion({
+  //reducer : ee.Reducer.mean(), 
+  //geometry : taranaki,
+  //scale : 90
+//})
+//print('mean_slope', mean_slope)
+
+
+//Max elevation spatial reducer
+//var max_elev = slope.reduceRegion({
+ //reducer : ee.Reducer.max(),
+  //geometry : taranaki ,
+  //scale : 90
+//}) 
+//print('max_elev', max_elev)
+
+
+
+var dataset = ee.ImageCollection('WORLDCLIM/V1/MONTHLY')
 
 
