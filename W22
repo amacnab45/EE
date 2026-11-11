@@ -1,5 +1,5 @@
 var srtm = ee.Image("CGIAR/SRTM90_V4");
-
+Map.setCenter(174.0638, -39.298,11)
 Map.setOptions('Satellite');
 Map.addLayer(srtm, {palette : ['black', 'orange', 'yellow'], min : 0, max : 2500}, 'srtm');
 
