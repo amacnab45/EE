@@ -3,16 +3,27 @@ Map.setCenter(174.0638, -39.298,11)
 Map.setOptions('Satellite');
 Map.addLayer(srtm, {palette : ['black', 'orange', 'yellow'], min : 0, max : 2500}, 'srtm');
 
-var elevationVis = {
-  min: 0,
-  max: 2500,
-  palette: ['black', 'orange', 'yellow']
-};
+//var elevationVis = {
+ // min: 0,
+  //max: 2500,
+  //palette: ['black', 'orange', 'yellow']
+//};
 
 
-Map.addLayer(srtm, elevationVis, 'Elevation', true, 0.6);
+//Map.addLayer(srtm, elevationVis, 'Elevation', true, 0.6);
 
 
-var srtm_fixed = srtm.add(100)
-Map.addLayer(srtm_fixed, elevationVis, 'fixed srtm')
-print(srtm_fixed)
+//var srtm_fixed = srtm.add(100)
+//Map.addLayer(srtm_fixed, elevationVis, 'fixed srtm')
+//print(srtm_fixed)
+
+//
+//var snow_line = srtm.gt(1800).selfMask()
+//var tree_line = srtm.gt(1015).selfMask()
+//Map.addLayer(snow_line, {palette : ['white', 'orange']}, 'snow threshold')
+//Map.addLayer(tree_line, {palette : ['green', 'red']}, 'tree threshold')
+//print(snow_line)
+
+//Calculate slope
+var slope = ee.Terrain.slope(srtm)
+Map.addLayer(slope,{palette: ['black', 'white']}, 'slope');
