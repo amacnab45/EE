@@ -1,8 +1,18 @@
 var srtm = ee.Image("CGIAR/SRTM90_V4");
-Map.setOptions('Satelitte')
-//Map.addLayer(srtm, {palette : ['black', 'orange', 'yellow'], min : 0, max : 2500, srtm)};
-Map.addLayer(
-  srtm,
-  {palette: ['black', 'orange', 'yellow'], min: 0, max: 2500},
-  'SRTM'
-);
+
+Map.setOptions('Satellite');
+Map.addLayer(srtm, {palette : ['black', 'orange', 'yellow'], min : 0, max : 2500}, 'srtm');
+
+var elevationVis = {
+  min: 0,
+  max: 2500,
+  palette: ['black', 'orange', 'yellow']
+};
+
+
+Map.addLayer(srtm, elevationVis, 'Elevation', true, 0.6);
+
+
+var srtm_fixed = srtm.add(100)
+Map.addLayer(srtm_fixed, elevationVis, 'fixed srtm')
+print(srtm_fixed)
