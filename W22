@@ -59,8 +59,8 @@ var jan_climate = ee.Image('WORLDCLIM/V1/MONTHLY/01');
 var july_climate = ee.Image('WORLDCLIM/V1/MONTHLY/07');
 
 // Select their average temperature bands
-var jan_climate_avg = jan_climate.select('tavg') // get average band
-var july_climate_avg = july_climate.select('tavg')
+var jan_climate_avg = jan_climate.select('tavg').multiply(0.1) // get average band
+var july_climate_avg = july_climate.select('tavg').multiply(0.1)
 
 // Set vis parameters
 var meanTemperatureVis = {
@@ -68,6 +68,7 @@ var meanTemperatureVis = {
   max: 30,
   palette: ['blue', 'purple', 'cyan', 'green', 'yellow', 'red'],
 };
+
 
 Map.addLayer(jan_climate_avg, meanTemperatureVis, 'janClimate')
 Map.addLayer(july_climate_avg, meanTemperatureVis, 'julyClimate')
