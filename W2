@@ -3,30 +3,57 @@ var image = ee.Image("CGIAR/SRTM90_V4");
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 
 
-Map.setCenter(174.0638, -39.298,11)
+//Map.setCenter(174.0638, -39.298,11)
 
-var protected_areas = ee.FeatureCollection("WCMC/WDPA/current/polygons")
-Map.addLayer(protected_areas)
+//var protected_areas = ee.FeatureCollection("WCMC/WDPA/current/polygons")
+//Map.addLayer(protected_areas)
 
-Map.setOptions('Satellite')
-
-
+//Map.setOptions('Satellite')
 
 
-Map.addLayer(protected_areas, {min : 0, max : 2500, palette : ['black', 'blue', 'orange', 'yellow']}),
-Map.addLayer(protected_areas, {colour : 'yellow'}, 'Protected Areas');
+
+
+//Map.addLayer(protected_areas, {min : 0, max : 2500, palette : ['black', 'blue', 'orange', 'yellow']}),
+//Map.addLayer(protected_areas, {colour : 'yellow'}, 'Protected Areas');
 
 
 // How many PAS on Earth
-var no_pas = protected_areas.size();
-print('Number of PAs:', no_pas);
+//var no_pas = protected_areas.size();
+//print('Number of PAs:', no_pas);
 
-var first_pa = protected_areas.sort('Status_YR', false).first()
-print('First PA:', first_pa)
+//var first_pa = protected_areas.sort('Status_YR', false).first()
+//print('First PA:', first_pa)
 
 // First feature of the collection of protected areas
-print(protected_areas)
-print(protected_areas.first());
+//print(protected_areas)
+//print(protected_areas.first());
+
+// Filter only for level II protected areas
+//var iucn_pa = protected_areas.filter(ee.Filter.eq('IUCN _CAT', 'II'));
+//Map.addLayer(iucn_pa, {colour : 'yellow'}, 'National Parks')
+
+// Spatial filter
+//var countries = ee.FeatureCollection("USDOS/LSIB_SIMPLE/2017");
+//print (countries);
+//Map.addLayer(countries)
+
+//var protected_areas = ee.FeatureCollection("WCMC/WDPA/current/polygons")
+// New Zealand only
+//var nz = countries.filter(ee.Filter.equals('country_na', 'New Zealand'))
+//print(nz)
+//Map.addLayer(nz, {colour : 'white'}, 'nz');
+
+//Filter Pas to NZ boundary
+//var nz_pas = protected_areas.filter(ee.Filter.bounds(nz));
+//print('No. pas in NZ:', nz_pas.size())
+
+// different colour 
+//Map.addLayer(nz_pas, {color: 'yellow'}, 'NZ PAs only');
+
+
+var nz_nps = ee.FeatureCollection("USDOS/LSIB_SIMPLE/2017")
+.filter(ee.Filter.bounds(nz))
+.filter(ee.Filter.eq('IUCN _CAT', 'II'));
 
 
 
