@@ -27,3 +27,7 @@ Map.addLayer(srtm, {palette : ['black', 'orange', 'yellow'], min : 0, max : 2500
 //Calculate slope
 var slope = ee.Terrain.slope(srtm)
 Map.addLayer(slope,{palette: ['black', 'white']}, 'slope');
+
+
+// Find Taranki  NP
+var taranaki = protected_
