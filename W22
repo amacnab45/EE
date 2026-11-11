@@ -1,7 +1,7 @@
 var srtm = ee.Image("CGIAR/SRTM90_V4");
 Map.setCenter(174.0638, -39.298,11)
 Map.setOptions('Satellite');
-Map.addLayer(srtm, {palette : ['black', 'orange', 'yellow'], min : 0, max : 2500}, 'srtm');
+//Map.addLayer(srtm, {palette : ['black', 'orange', 'yellow'], min : 0, max : 2500}, 'srtm');
 
 //var elevationVis = {
  // min: 0,
@@ -53,5 +53,36 @@ Map.addLayer(srtm, {palette : ['black', 'orange', 'yellow'], min : 0, max : 2500
 
 
 var dataset = ee.ImageCollection('WORLDCLIM/V1/MONTHLY')
+
+//Two mate climate data
+var jan_climate = ee.Image('WORLDCLIM/V1/MONTHLY/01');
+var july_climate = ee.Image('WORLDCLIM/V1/MONTHLY/07');
+
+// Select their average temperature bands
+var jan_climate_avg = jan_climate.select('tavg') // get average band
+var july_climate_avg = july_climate.select('tavg')
+
+// Set vis parameters
+var meanTemperatureVis = {
+  min: -40,
+  max: 30,
+  palette: ['blue', 'purple', 'cyan', 'green', 'yellow', 'red'],
+};
+
+Map.addLayer(jan_climate_avg, meanTemperatureVis, 'janClimate')
+Map.addLayer(july_climate_avg, meanTemperatureVis, 'julyClimate')
+
+
+// Note the pixel scaling error and fix it
+// Need to divide all pixel values by 10, or multiply by .1 (.multiply(0.1)
+
+var annualMeanTemperature = dataset
+  .select('tavg')
+  .mean() // this is the reducer
+  .multiply(0.1); // scale pixels to real values
+
+Map.setCenter(71.7, 52.4, 3);
+Map.addLayer(annualMeanTemperature, meanTemperatureVis, 'Mean Annual Temperature');
+
 
 
