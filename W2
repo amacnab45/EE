@@ -51,9 +51,39 @@ var image = ee.Image("CGIAR/SRTM90_V4");
 //Map.addLayer(nz_pas, {color: 'yellow'}, 'NZ PAs only');
 
 
-var nz_nps = ee.FeatureCollection("USDOS/LSIB_SIMPLE/2017")
-.filter(ee.Filter.bounds(nz))
-.filter(ee.Filter.eq('IUCN _CAT', 'II'));
+
+
+//var nz  = ee.FeatureCollection("USDOS/LSIB_SIMPLE/2017")
+//.filter(ee.Filter.eq('New Zealand', 'NZ')); need country_na then the value 
+//print(nz)
+
+//var nz_nps = ee.FeatureCollection("WCMC/WDPA/current/polygons")
+//.filter(ee.Filter.eq('IUCN _CAT', 'II')) there is a gap between IUCN and cat
+//.filter(ee.Filter.bounds(nz));
+//print('No. pas in NZ:', nz_nps.size())
+
+//Map.addLayer(nz_nps, {color : 'white'}, 'NZ National Parks');
+
+
+// New Zealand boundary
+var nz = ee.FeatureCollection("USDOS/LSIB_SIMPLE/2017")
+  .filter(ee.Filter.eq('country_na', 'New Zealand'));
+
+print('NZ:', nz);
+print('NZ count:', nz.size());
+
+
+// IUCN Category II protected areas in New Zealand
+var nz_nps = ee.FeatureCollection("WCMC/WDPA/current/polygons")
+  .filter(ee.Filter.eq('IUCN_CAT', 'II'))
+  .filterBounds(nz);
+
+print('No. PAs in NZ:', nz_nps.size());
+
+
+// Show them on the map
+Map.centerObject(nz, 5);
+Map.addLayer(nz_nps, {color: 'white'}, 'NZ National Parks');
 
 
 
