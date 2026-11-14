@@ -25,4 +25,4 @@ Map.setOptions('Satellite');
 
 
 var hadal = bedrock.lt(-6000).selfMask();
-Map.addLayer(bedrock,{palette : ['purple']}, 'Hadal Zone');
+Map.addLayer(hadal,{palette : ['purple']}, 'Hadal Zone'); // remember to add new dataset e.g. hadal
