@@ -24,5 +24,5 @@ Map.setOptions('Satellite');
 //Map.addLayer(ocean, {palette : ['blue']}, 'Ocean');
 
 
-var hadal = bedrock.lt(-6000);
+var hadal = bedrock.lt(-6000).selfMask();
 Map.addLayer(bedrock,{palette : ['purple']}, 'Hadal Zone');
