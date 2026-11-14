@@ -1,11 +1,16 @@
 // Loading in ETOPO1 dataset
 
+
 var bedrock = ee.Image("NOAA/NGDC/ETOPO1")
-.select(bedrock)
+.select('bedrock');  //Dont forget the quotation marks
 
 Map.addLayer(bedrock,{
   min : -8000,
   max : 4000,
-palette : ['darkblue','blue','cyan','green','yellow']}, 'Bedrock');
+palette : ['darkblue','blue','cyan','green','yellow']}, 'Bedrock'); //Palette assigns colours to features
 
+
+//Centers the map
 Map.setCenter(150,-25,4)
+//Satellite mode
+Map.setOptions('Satellite');
