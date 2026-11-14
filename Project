@@ -7,3 +7,5 @@ Map.addLayer(bedrock,{
   min : -8000,
   max : 4000,
 palette : ['darkblue','blue','cyan','green','yellow']}, 'Bedrock');
+
+Map.setCenter(150,-25,4)
