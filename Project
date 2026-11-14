@@ -44,4 +44,10 @@ var slope = ee.Terrain.slope(bedrock);
 var submarine_canyons = slope.updateMask(slope.gt(6));
 Map.addLayer(submarine_canyons,{palette : ['orange']},'Submarine canyons');
 
+var reef = ee.Image("ACA/reef_habitat/v2_0");
+//Map.addLayer(reef,{palette : ['cyan']}, 'Coral reefs')
+//print(reef.bandNames());
+Map.addLayer(reef.select('reef_mask').selfMask(),
+{palette : 'red'}, 'Coral reefs');
+
 
