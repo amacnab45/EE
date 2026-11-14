@@ -16,10 +16,10 @@ Map.setCenter(150,-25,4)
 Map.setOptions('Satellite');
 
 
-//var ocean = bedrock.lt(0);
+//var ocean = bedrock.lt(0); // lt stands for less than 
 //Map.addLayer(ocean, {}, 'Ocean');
 
-
-var ocean = bedrock.lt(0).selfMask();
-Map.addLayer(ocean, {palette : ['blue']}, 'Ocean');
+//Represents the ocean as blue and land transperant
+//var ocean = bedrock.lt(0).selfMask();
+//Map.addLayer(ocean, {palette : ['blue']}, 'Ocean');
 
