@@ -1,0 +1,4 @@
+// Loading in ETOPO1 dataset
+
+var bathy = ee.Image("NOAA/NGDC/ETOPO1")
+Map.addLayer()
