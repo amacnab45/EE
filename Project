@@ -36,5 +36,4 @@ Map.addLayer(abyssal, {palette : ['pink']}, 'Abyssal plains');
 var continental_slopes = bedrock.gt(-3000)
 .and(bedrock.lt(-250))
 .selfMask();
-
-Map.addLayer(continent_slopes, {palette : ['green']}, 'Continental slopes');
+Map.addLayer(continental_slopes, {palette : ['green']}, 'Continental slopes');
