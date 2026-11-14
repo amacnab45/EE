@@ -38,4 +38,4 @@ var continental_slopes = bedrock.gt(-3000)
 .selfMask();
 Map.addLayer(continental_slopes, {palette : ['green']}, 'Continental slopes');
 
-var submarine_canyons = bedrock.gt()
+var submarine_canyons = bedrock.gt(0)
