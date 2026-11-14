@@ -28,7 +28,11 @@ var hadal = bedrock.lt(-6000)
 .selfMask();
 Map.addLayer(hadal,{palette : ['purple']}, 'Hadal Zone'); // remember to add new dataset e.g. hadal
 
-//var abyssal = bedrock.gt(-6000)
-//.and(bedrock.lt(-3000))
-//.selfMask()
-//Map.addLayer(abyssal, {palette : ['pink']}, 'Abyssal plains');
+var abyssal = bedrock.gt(-6000)
+.and(bedrock.lt(-3000))
+.selfMask()
+Map.addLayer(abyssal, {palette : ['pink']}, 'Abyssal plains');
+
+var continental_slopes = bedrock.gt(-3000)
+.and(bedrock.lt(-250))
+.selfMask();
