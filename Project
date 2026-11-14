@@ -50,4 +50,5 @@ var reef = ee.Image("ACA/reef_habitat/v2_0");
 Map.addLayer(reef.select('reef_mask').selfMask(),
 {palette : 'red'}, 'Coral reefs');
 
-
+var boats = ee.ImageCollection("GFW/GFF/V1/vessel_hours");
+Map.addLayer(boats,{palette : ['red']}, 'Boats');
