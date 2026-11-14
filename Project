@@ -14,3 +14,11 @@ palette : ['darkblue','blue','cyan','green','yellow']}, 'Bedrock'); //Palette as
 Map.setCenter(150,-25,4)
 //Satellite mode
 Map.setOptions('Satellite');
+
+
+var ocean = bedrock.lt(0);
+Map.addLayer(ocean, {}, 'Ocean');
+
+
+var ocean = bedrock
+
