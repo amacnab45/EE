@@ -54,6 +54,19 @@ var boats = ee.ImageCollection("GFW/GFF/V1/vessel_hours");
 //Map.addLayer(boats.Image.select('boat)
 //{ palette : ['red']}, 'Boats');
 
-//print(boats.first().bandNames());
+print(boats.first().bandNames());
 
-var boatList = boat.toList(boat.size())
+// Separating the fishing practices
+
+var longlines = boats.select('drifting_longlines').sum();
+var fixed_gear = boats.select('fixed_gear').sum();
+var  other = boats.select('other_fishing').sum();
+var purse_seines = boats.select('purse_seines').sum();
+var squid_jigger = boats.select('squid_jigger').sum();
+var trawlers = boats.select(trawlers).sum();
+
+Map.addLayer(longlines.selfMask(),{
+  min : 0,
+  max : 100,
+  palette : ['black', 'white']}, 'Longlines');
+
