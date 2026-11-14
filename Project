@@ -67,5 +67,5 @@ var trawlers = boats.select(trawlers).sum();
 Map.addLayer(longlines.selfMask(),{
   min : 0,
   max : 100,
-  palette : ['black', 'white']}, 'Longlines');
+  palette : ['FF00FF']}, 'Longlines');
 
