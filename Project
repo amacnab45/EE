@@ -38,7 +38,6 @@ var continental_slopes = bedrock.gt(-3000)
 Map.addLayer(continental_slopes,{palette: ['green']}, 'Continental slopes');
 
 
-var submarine_canyons = bedrock.gt(0)
-
-
+// Need to incoperate slope > 6 degrees
+//var submarine_canyons = bedrock.gt(0)
 //var slope = ee.Marine.slope(ETOPO1)
