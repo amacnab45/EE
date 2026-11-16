@@ -22,5 +22,27 @@ var population_vis = {
 Map.addLayer(p_count_2000, population_vis, 'population_count_2000');
 Map.addLayer(p_count_2015, population_vis, 'population_count_2015');
 
+var n1_2000 = ee.Image("NOAA/DMSP-OLS/NIGHTTIME_LIGHTS/F142000");
+var n1_2013 = ee.Image("NOAA/DMSP-OLS/NIGHTTIME_LIGHTS/F182013");
+
+
+
+var nighttimeLightsVis = { max : 63,
+min : 0 ,
+palette : ['50C878', 
+'FF4500', '0047AB', '9966CC']};
+
+
+
+
+
+
+var nl_2000 = ee.Image ('NOAA/DMSP-OLS/NIGHTTIME_LIGHTS/F142000').select(['avg_vis'], ['nightlight']); //select and rename
+var nl_2013 = ee.Image ('NOAA/DMSP-OLS/NIGHTTIME_LIGHTS/F182013').select(['avg_vis'], ['nightlight']);
+print ('nightligprocessed', nl_2000)
+print('nightlight 2013 processed', nl_2013)
+
+Map.addLayer(nl_2000, nighttimeLightsVis, 'Nighttime Lights 2000');
+Map.addLayer(nl_2013, nighttimeLightsVis, 'Nighttime Lights 2013');
 
 
