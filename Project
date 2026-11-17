@@ -11,7 +11,7 @@ palette : ['darkblue','blue','cyan','green','yellow']}, 'Bedrock'); //Palette as
 
 
 //Centers the map
-Map.setCenter(150,-25,4)
+Map.setCenter(0,0,2)
 //Satellite mode
 Map.setOptions('Satellite');
 
@@ -51,9 +51,13 @@ Map.addLayer(reef.select('reef_mask').selfMask(),
 {palette : 'pink'}, 'Coral reefs');
 
 var boats = ee.ImageCollection("GFW/GFF/V1/vessel_hours")
-.filterDate('2026-01-02', '2026-02-03');
+.filterDate('2016-01-01', '2017-01-01')
 
-print(boats.first().bandNames());
+
+
+
+
+
 
 // Separating the fishing practices
 
@@ -62,10 +66,14 @@ var fixed_gear = boats.select('fixed_gear').sum();
 var  other = boats.select('other_fishing').sum();
 var purse_seines = boats.select('purse_seines').sum();
 var squid_jigger = boats.select('squid_jigger').sum();
-var trawlers = boats.select(trawlers).sum();
+var trawlers = boats.select('trawlers').sum();
 
-Map.addLayer(longlines.selfMask(),{
-  min : 0,
-  max : 100,
-  palette : ['FF00FF']}, 'Longlines');
+var longlines_masked = longlines.selfMask();
+
+
+Map.addLayer(longlines_masked, {
+  min: 0,
+  max: 10,
+  palette : ['yellow', 'orange','red']
+}, 'Global Longlines');
 
