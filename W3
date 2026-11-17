@@ -19,57 +19,57 @@ var population_vis = {
   ],
   'min': 0.0
 };
-Map.addLayer(p_count_2000, population_vis, 'population_count_2000');
-Map.addLayer(p_count_2015, population_vis, 'population_count_2015');
+//Map.addLayer(p_count_2000, population_vis, 'population_count_2000');
+//Map.addLayer(p_count_2015, population_vis, 'population_count_2015');
 
-var n1_2000 = ee.Image("NOAA/DMSP-OLS/NIGHTTIME_LIGHTS/F142000");
-var n1_2013 = ee.Image("NOAA/DMSP-OLS/NIGHTTIME_LIGHTS/F182013");
-
-
-
-var nighttimeLightsVis = { max : 63,
-min : 0 ,
-palette : [
-    '1b0c41',
-    '4a0c6b',
-    '781c6d',
-    'a52c60']};
+//var n1_2000 = ee.Image("NOAA/DMSP-OLS/NIGHTTIME_LIGHTS/F142000");
+//var n1_2013 = ee.Image("NOAA/DMSP-OLS/NIGHTTIME_LIGHTS/F182013");
 
 
+
+//var nighttimeLightsVis = { max : 63,
+//min : 0 ,
+//palette : [
+  //  '1b0c41',
+    //'4a0c6b',
+    //'781c6d',
+    //'a52c60']};
 
 
 
 
-var nl_2000 = ee.Image ('NOAA/DMSP-OLS/NIGHTTIME_LIGHTS/F142000').select(['avg_vis'], ['nightlight']); //select and rename
-var nl_2013 = ee.Image ('NOAA/DMSP-OLS/NIGHTTIME_LIGHTS/F182013').select(['avg_vis'], ['nightlight']);
-print ('nightligprocessed', nl_2000)
-print('nightlight 2013 processed', nl_2013)
-
-Map.addLayer(nl_2000, nighttimeLightsVis, 'Nighttime Lights 2000');
-Map.addLayer(nl_2013, nighttimeLightsVis, 'Nighttime Lights 2013');
 
 
-var grid = ee.FeatureCollection('users/murrnick/mb5370/worldgrid_2deg');
-Map.addLayer(grid, {colour : 'white'}, '2 Degree Grid', false,0.4);
+//var nl_2000 = ee.Image ('NOAA/DMSP-OLS/NIGHTTIME_LIGHTS/F142000').select(['avg_vis'], ['nightlight']); //select and rename
+//var nl_2013 = ee.Image ('NOAA/DMSP-OLS/NIGHTTIME_LIGHTS/F182013').select(['avg_vis'], ['nightlight']);
+//print ('nightligprocessed', nl_2000)
+//print('nightlight 2013 processed', nl_2013)
+
+//Map.addLayer(nl_2000, nighttimeLightsVis, 'Nighttime Lights 2000');
+//Map.addLayer(nl_2013, nighttimeLightsVis, 'Nighttime Lights 2013');
 
 
-var coast = ee.FeatureCollection('projects/UQ_intertidal/dataMasks/naturalEarthCoastline_v1');
-Map.addLayer(coast,{colour : 'yellow'}, 'coast');
+//var grid = ee.FeatureCollection('users/murrnick/mb5370/worldgrid_2deg');
+//Map.addLayer(grid, {colour : 'white'}, '2 Degree Grid', false,0.4);
 
 
-var coastGrids = grid.filterBounds(coast);
-Map.addLayer(coastGrids, {palette : ['7f4406', '725735' ,'605edf','f09f10']},'Coastal grids');
+//var coast = ee.FeatureCollection('projects/UQ_intertidal/dataMasks/naturalEarthCoastline_v1');
+//Map.addLayer(coast,{colour : 'yellow'}, 'coast');
+
+
+//var coastGrids = grid.filterBounds(coast);
+//Map.addLayer(coastGrids, {palette : ['7f4406', '725735' ,'605edf','f09f10']},'Coastal grids');
  
-var pop_change = p_count_2015
-  .subtract(p_count_2000)
-  .clip(coastGrids) // remember this should be your grid
-Map.addLayer (pop_change, {palette:  ['red', 'black', 'lime'], min: -500, max: 500}, 'pop_change', true, 0.9)
+//var pop_change = p_count_2015
+  //.subtract(p_count_2000)
+  //.clip(coastGrids) // remember this should be your grid
+//Map.addLayer (pop_change, {palette:  ['red', 'black', 'lime'], min: -500, max: 500}, 'pop_change', true, 0.9)
 
 
-var nl_change = nl_2013
-  .subtract(nl_2000)
-  .clip(coastGrids) // clip it to the coastal ecoregions/grids
-Map.addLayer (nl_change, {palette:  ['red', 'black', 'lime'], min: -50 , max: 50}, 'nl_change', true, 0.9)
+//var nl_change = nl_2013
+  //.subtract(nl_2000)
+  //.clip(coastGrids) // clip it to the coastal ecoregions/grids
+//Map.addLayer (nl_change, {palette:  ['red', 'black', 'lime'], min: -50 , max: 50}, 'nl_change', true, 0.9)
 
 // Average change in nightlights 
 var nl_changes = nl_change.reduceRegions({
@@ -80,11 +80,11 @@ var nl_changes = nl_change.reduceRegions({
 print(nl_changes.first());  // look at properties of the first one 
 
 
-var p_changes = pop_change.reduceRegions({
-  collection : coast,
-  reducer : ee.Reducer.mean(),
-  scale : 1000,
-});
+//var p_changes = pop_change.reduceRegions({
+ // collection : coast,
+  //reducer : ee.Reducer.mean(),
+  //scale : 1000,
+//});
 
 
 
@@ -102,4 +102,11 @@ Export.table.toAsset({
 });
 
 
-vat nl_analysis = ee.FeatureCollection('projects/ee-alexandermacnab/assets/nl_change');
+var nl_results = ee.FeatureCollection('projects/ee-alexandermacnab/assets/nl_change');
+
+Map.addLayer(nl_results)
+
+
+
+
+
