@@ -49,8 +49,8 @@ Map.addLayer(nl_2000, nighttimeLightsVis, 'Nighttime Lights 2000');
 Map.addLayer(nl_2013, nighttimeLightsVis, 'Nighttime Lights 2013');
 
 
-var grid = ee.FeatureCollection('users/murrnick/mb5370/worldgrid_5deg');
-Map.addLayer(grid, {colour : 'white'}, '5 Degree Grid');
+var grid = ee.FeatureCollection('users/murrnick/mb5370/worldgrid_2deg');
+Map.addLayer(grid, {colour : 'white'}, '2 Degree Grid');
 
 
 var coast = ee.FeatureCollection('projects/UQ_intertidal/dataMasks/naturalEarthCoastline_v1');
@@ -58,5 +58,5 @@ Map.addLayer(coast,{colour : 'yellow'}, 'coast');
 
 
 var coastGrids = grid.filterBounds(coast);
-Map.addLayer(coastGrids, {colour : '7f4406', '725735' ,'605edf','f09f10'}, 'Coastal grids');
+Map.addLayer(coastGrids, {palette : ['7f4406', '725735' ,'605edf','f09f10']},'Coastal grids');
 
