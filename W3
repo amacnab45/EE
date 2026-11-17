@@ -50,7 +50,7 @@ Map.addLayer(nl_2013, nighttimeLightsVis, 'Nighttime Lights 2013');
 
 
 var grid = ee.FeatureCollection('users/murrnick/mb5370/worldgrid_2deg');
-Map.addLayer(grid, {colour : 'white'}, '2 Degree Grid');
+Map.addLayer(grid, {colour : 'white'}, '2 Degree Grid', false,0.4);
 
 
 var coast = ee.FeatureCollection('projects/UQ_intertidal/dataMasks/naturalEarthCoastline_v1');
@@ -77,6 +77,7 @@ var nl_changes = nl_change.reduceRegions({
   reducer : ee.Reducer.mean(),
   scale : 1000,
 });
-print(nl_changes.first());  // llok at properties of the first one 
+print(nl_changes.first());  // look at properties of the first one 
 
-
+//Export the result to asset 
+Export.table.toAsset
