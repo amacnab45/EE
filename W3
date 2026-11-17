@@ -79,15 +79,27 @@ var nl_changes = nl_change.reduceRegions({
 });
 print(nl_changes.first());  // look at properties of the first one 
 
+
+var p_changes = pop_change.reduceRegions({
+  collection : coast,
+  reducer : ee.Reducer.mean(),
+  scale : 1000,
+});
+
+
+
 //Export the result to asset 
 Export.table.toAsset({
-  collection : pop_change ,
+  collection : p_changes,
   description : 'export_pop_toAsset',
   assetId : 'pop_change'
 });
 
 Export.table.toAsset({
-  collection : nl_changes ,
+  collection : nl_change ,
   description : 'export_nl_toAsset',
   assetId : 'nl_change'
 });
+
+
+vat nl_analysis = ee.FeatureCollection('projects/ee-alexandermacnab/assets/nl_change');
