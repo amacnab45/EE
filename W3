@@ -59,4 +59,24 @@ Map.addLayer(coast,{colour : 'yellow'}, 'coast');
 
 var coastGrids = grid.filterBounds(coast);
 Map.addLayer(coastGrids, {palette : ['7f4406', '725735' ,'605edf','f09f10']},'Coastal grids');
+ 
+var pop_change = p_count_2015
+  .subtract(p_count_2000)
+  .clip(coastGrids) // remember this should be your grid
+Map.addLayer (pop_change, {palette:  ['red', 'black', 'lime'], min: -500, max: 500}, 'pop_change', true, 0.9)
+
+
+var nl_change = nl_2013
+  .subtract(nl_2000)
+  .clip(coastGrids) // clip it to the coastal ecoregions/grids
+Map.addLayer (nl_change, {palette:  ['red', 'black', 'lime'], min: -50 , max: 50}, 'nl_change', true, 0.9)
+
+// Average change in nightlights 
+var nl_changes = nl_change.reduceRegions({
+  collection : coast,
+  reducer : ee.Reducer.mean(),
+  scale : 1000,
+});
+print(nl_changes.first());  // llok at properties of the first one 
+
 
