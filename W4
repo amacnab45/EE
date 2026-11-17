@@ -28,3 +28,6 @@ var field_stations = ee.FeatureCollection([Heron,Orpheus, Motupure])
 print(field_stations)
 
 
+var coral = ee.Image("ACA/reef_habitat/v2_0");
+Map.addLayer(coral,
+min : )
