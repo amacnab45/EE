@@ -68,6 +68,7 @@ var purse_seines = boats.select('purse_seines').sum();
 var squid_jigger = boats.select('squid_jigger').sum();
 var trawlers = boats.select('trawlers').sum();
 
+//Hides zero values 
 var longlines_masked = longlines.selfMask();
 
 
