@@ -57,5 +57,6 @@ var coast = ee.FeatureCollection('projects/UQ_intertidal/dataMasks/naturalEarthC
 Map.addLayer(coast,{colour : 'yellow'}, 'coast');
 
 
-var coastGrids = ('users/murrnick/mb5370/worldgrid_1deg')
-.filter();
+var coastGrids = grid.filterBounds(coast);
+Map.addLayer(coastGrids, {colour : '7f4406', '725735' ,'605edf','f09f10'}, 'Coastal grids');
+
