@@ -80,4 +80,14 @@ var nl_changes = nl_change.reduceRegions({
 print(nl_changes.first());  // look at properties of the first one 
 
 //Export the result to asset 
-Export.table.toAsset
+Export.table.toAsset({
+  collection : pop_change ,
+  description : 'export_pop_toAsset',
+  assetId : 'pop_change'
+});
+
+Export.table.toAsset({
+  collection : nl_changes ,
+  description : 'export_nl_toAsset',
+  assetId : 'nl_change'
+});
