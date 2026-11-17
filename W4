@@ -1,0 +1,8 @@
+var distance = 800
+
+Map.setOptions('SATELLITE')
+Map.setCenter(151.914,-23.441,17
+
+
+var field_stations = ee.FeatureCollection([HeronIsland,Orpheus, Motupure]);
+print(field_stations)
