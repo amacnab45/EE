@@ -72,12 +72,12 @@
 //Map.addLayer (nl_change, {palette:  ['red', 'black', 'lime'], min: -50 , max: 50}, 'nl_change', true, 0.9)
 
 // Average change in nightlights 
-var nl_changes = nl_change.reduceRegions({
-  collection : coast,
-  reducer : ee.Reducer.mean(),
-  scale : 1000,
-});
-print(nl_changes.first());  // look at properties of the first one 
+//var nl_changes = nl_change.reduceRegions({
+  //collection : coast,
+  //reducer : ee.Reducer.mean(),
+  //scale : 1000,
+//});
+//print(nl_changes.first());  // look at properties of the first one 
 
 
 //var p_changes = pop_change.reduceRegions({
@@ -89,7 +89,7 @@ print(nl_changes.first());  // look at properties of the first one
 
 
 //Export the result to asset 
-Export.table.toAsset({
+/*Export.table.toAsset({
   collection : p_changes,
   description : 'export_pop_toAsset',
   assetId : 'pop_change'
@@ -99,14 +99,25 @@ Export.table.toAsset({
   collection : nl_change ,
   description : 'export_nl_toAsset',
   assetId : 'nl_change'
-});
+});*/
 
 
 var nl_results = ee.FeatureCollection('projects/ee-alexandermacnab/assets/nl_change');
 
 Map.addLayer(nl_results)
+print(nl_results)
 
+var p_results = ee.FeatureCollection('projects/ee-26-514223/assets/pop_change');
+Map.addLayer(p_results)
+print(p_results)
 
+var empty = ee.Image().byte() // empty image
+var palette = [ 'green', 'yellow', 'orange', 'red'];
+var pop_change = empty.paint( {
+  featureCollection : p_results,
+  color : 'mean'
+});
 
+Map.addLayer(pop_change, {max:112, palette : palette}, 'popchange results');
 
 
