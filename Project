@@ -30,12 +30,12 @@ Map.addLayer(hadal,{palette: ['purple']}, 'Hadal Zone');
 var abyssal = bedrock.gt(-6000)
 .and(bedrock.lt(-3000))
 .selfMask();
-Map.addLayer(abyssal,{palette: ['darkblue']}, 'Abyssal plains');
+Map.addLayer(abyssal,{palette: ['00008B']}, 'Abyssal plains');
 
 var continental_slopes = bedrock.gt(-3000)
 .and(bedrock.lt(-250))
 .selfMask();
-Map.addLayer(continental_slopes,{palette: ['pink']}, 'Continental slopes');
+Map.addLayer(continental_slopes,{palette: ['00CED1']}, 'Continental slopes');
 
 
 // Need to incoperate slope > 6 degrees
@@ -46,14 +46,11 @@ var submarine_canyons = slope.updateMask(slope.gt(6)
 .selfMask()));
 Map.addLayer(submarine_canyons,{palette : ['orange']},'Submarine canyons');
 
-var reef = ee.Image("ACA/reef_habitat/v2_0");
-//Map.addLayer(reef,{palette : ['cyan']}, 'Coral reefs')
-//print(reef.bandNames());
-Map.addLayer(reef.select('reef_mask').selfMask(),
-{palette : 'pink'}, 'Coral reefs');
+
 
 var boats = ee.ImageCollection("GFW/GFF/V1/vessel_hours")
 .filterDate('2016-01-01', '2017-01-01')
+
 
 
 
