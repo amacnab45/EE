@@ -41,7 +41,9 @@ Map.addLayer(continental_slopes,{palette: ['pink']}, 'Continental slopes');
 // Need to incoperate slope > 6 degrees
 //var submarine_canyons = bedrock.gt(0)
 var slope = ee.Terrain.slope(bedrock);
-var submarine_canyons = slope.updateMask(slope.gt(6));
+var submarine_canyons = slope.updateMask(slope.gt(6)
+.and(bedrock.lt(0)
+.selfMask()));
 Map.addLayer(submarine_canyons,{palette : ['orange']},'Submarine canyons');
 
 var reef = ee.Image("ACA/reef_habitat/v2_0");
@@ -71,10 +73,48 @@ var trawlers = boats.select('trawlers').sum();
 //Hides zero values 
 var longlines_masked = longlines.selfMask();
 
-
+//Longlines
 Map.addLayer(longlines_masked, {
   min: 0,
   max: 10,
   palette : ['yellow', 'orange','red']
 }, 'Global Longlines');
+
+//fixed gear
+var fixedgear_masked = fixed_gear.selfMask();
+Map.addLayer(fixedgear_masked, {
+  min:0,
+  max : 10,
+  palette : 'FF8C00'
+});
+
+
+// Other fishing 
+
+Map.addLayer(other.selfMask(), {
+  min: 0,
+  max: 10,
+  palette: ['D3D3D3']
+}, 'Other Fishing');
+
+// Purse seines - YELLOW
+Map.addLayer(purse_seines.selfMask(), {
+  min: 0,
+  max: 10,
+  palette: ['FFFF00']
+}, 'Purse Seines');
+
+// Squid jiggers - MAGENTA
+Map.addLayer(squid_jigger.selfMask(), {
+  min: 0,
+  max: 10,
+  palette: ['FF00FF']
+}, 'Squid Jiggers');
+
+// Trawlers - LIME GREEN
+Map.addLayer(trawlers.selfMask(), {
+  min: 0,
+  max: 10,
+  palette: ['00FF00']
+}, 'Trawlers');
 
