@@ -53,3 +53,8 @@ var grid = ee.FeatureCollection('users/murrnick/mb5370/worldgrid_5deg');
 Map.addLayer(grid, {colour : 'white'}, '5 Degree Grid');
 
 
+var coast = ee.FeatureCollection('projects/UQ_intertidal/dataMasks/naturalEarthCoastline_v1');
+Map.addLayer(coast,{colour : 'yellow'}, 'coast');
+
+
+var 
