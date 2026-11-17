@@ -29,8 +29,11 @@ var n1_2013 = ee.Image("NOAA/DMSP-OLS/NIGHTTIME_LIGHTS/F182013");
 
 var nighttimeLightsVis = { max : 63,
 min : 0 ,
-palette : ['50C878', 
-'FF4500', '0047AB', '9966CC']};
+palette : [
+    '1b0c41',
+    '4a0c6b',
+    '781c6d',
+    'a52c60']};
 
 
 
@@ -44,5 +47,9 @@ print('nightlight 2013 processed', nl_2013)
 
 Map.addLayer(nl_2000, nighttimeLightsVis, 'Nighttime Lights 2000');
 Map.addLayer(nl_2013, nighttimeLightsVis, 'Nighttime Lights 2013');
+
+
+var grid = ee.FeatureCollection('users/murrnick/mb5370/worldgrid_5deg');
+Map.addLayer(grid, {colour : 'white'}, '5 Degree Grid');
 
 
