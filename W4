@@ -61,10 +61,11 @@ print(coral_area)
 var bufferedStations = field_stations.map(buffered);
 print(bufferedStations)
 
-//*var coral_t_cover = bufferedStations.reduceRegion({
+var coral_t_cover = coral.reduceRegions({
 collection : bufferedStations,
 reducer : ee.Reducer.sum(),
 scale : 5 ,
 })
-//;
+;
 
+print(coral_t_cover)
