@@ -16,6 +16,12 @@ var Orpheus = /* color: #d63000 */ee.Feature(
         {
           "station": "Motupure",
           "system:index": "0"
+        }),
+    Rothera = /* color: #ffc82d */ee.Feature(
+        ee.Geometry.MultiPoint(),
+        {
+          "station": "Antarctica",
+          "system:index": "0"
         });
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var distance = 800
@@ -24,7 +30,7 @@ Map.setOptions('SATELLITE')
 Map.setCenter(151.914,-23.441,17)
 
 
-var field_stations = ee.FeatureCollection([Heron,Orpheus, Motupure])
+var field_stations = ee.FeatureCollection([Heron,Orpheus, Motupure, Rothera,])
 print(field_stations)
 
 
@@ -47,5 +53,18 @@ var buffered = function(feature) {var buffered  = feature.buffer(800)
 return buffered; 
 }
 
+var coral_area = ee.Image.pixelArea()
+  .updateMask(coral);
+  
+print(coral_area)
+  
 var bufferedStations = field_stations.map(buffered);
 print(bufferedStations)
+
+//*var coral_t_cover = bufferedStations.reduceRegion({
+collection : bufferedStations,
+reducer : ee.Reducer.sum(),
+scale : 5 ,
+})
+//;
+
