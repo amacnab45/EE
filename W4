@@ -22,6 +22,12 @@ var Orpheus = /* color: #d63000 */ee.Feature(
         {
           "station": "Antarctica",
           "system:index": "0"
+        }),
+    AIMS = /* color: #00ffff */ee.Feature(
+        ee.Geometry.MultiPoint(),
+        {
+          "station": "AIMS",
+          "system:index": "0"
         });
 /***** End of imports. If edited, may not auto-convert in the playground. *****/
 var distance = 800
@@ -30,7 +36,7 @@ Map.setOptions('SATELLITE')
 Map.setCenter(151.914,-23.441,17)
 
 
-var field_stations = ee.FeatureCollection([Heron,Orpheus, Motupure, Rothera,])
+var field_stations = ee.FeatureCollection([Heron,Orpheus, Motupure, Rothera, AIMS])
 print(field_stations)
 
 
@@ -96,3 +102,11 @@ Map.addLayer(coral_area, {
   max: 25,
   palette: ['orange']
 }, 'Coral Area');
+
+
+
+var highest_coralA = coral_results.sort('sum', false);
+
+
+print('Most coral:', highest_coralA.first());
+
