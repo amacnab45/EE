@@ -83,4 +83,16 @@ print(coral_results)
 var coral_b = coral
 .multiply(ee.Image.pixelArea());
 
-print(coral_b)
+
+
+print(coral_area, 'Coral area');
+
+print('Coral cover:', coral_cover);
+
+print('Coral results', coral_results);
+
+Map.addLayer(coral_area, {
+  min: 0,
+  max: 25,
+  palette: ['orange']
+}, 'Coral Area');
