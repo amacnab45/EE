@@ -29,5 +29,23 @@ print(field_stations)
 
 
 var coral = ee.Image("ACA/reef_habitat/v2_0");
-Map.addLayer(coral,
-min : )
+Map.addLayer(coral.select('benthic')
+.eq(15)
+.selfMask()
+,
+{palette : ['orange']},
+'Coral cover')
+;
+
+print(coral.bandNames());
+
+var buffered = ee.Feature(field_stations.first());
+
+print(buffered)
+
+var buffered = function(feature) {var buffered  = feature.buffer(800)
+return buffered; 
+}
+
+var bufferedStations = field_stations.map(buffered);
+print(bufferedStations)
