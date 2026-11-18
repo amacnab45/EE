@@ -53,19 +53,34 @@ var buffered = function(feature) {var buffered  = feature.buffer(800)
 return buffered; 
 }
 
+var coral_cover = coral.select('benthic')
+  .eq(15)
+  .selfMask();
+
 var coral_area = ee.Image.pixelArea()
-  .updateMask(coral);
-  
-print(coral_area)
+  .updateMask(coral_cover);
+
+
+ 
   
 var bufferedStations = field_stations.map(buffered);
 print(bufferedStations)
 
-var coral_t_cover = coral.reduceRegions({
+
+
+
+var coral_results = coral_cover.reduceRegions({
 collection : bufferedStations,
 reducer : ee.Reducer.sum(),
 scale : 5 ,
 })
 ;
 
-print(coral_t_cover)
+print(coral_results)
+
+// Compute area of coral within buffer
+
+var coral_b = coral
+.multiply(ee.Image.pixelArea());
+
+print(coral_b)
